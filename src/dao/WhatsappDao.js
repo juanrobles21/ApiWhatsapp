@@ -9,6 +9,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const fs = require("fs");
+const myConsole = new console.Console(fs.createWriteStream("./log.txt"));
 class WhatsappDao {
     static VerifyToken(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -30,7 +32,18 @@ class WhatsappDao {
     }
     static ReceivedMenssage(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            res.send("Hola Recevived");
+            try {
+                var entry = (req.body["entry"])[0];
+                var changes = (entry["changes"])[0];
+                var value = changes["value"];
+                var menssageObject = value["messages"];
+                myConsole.log(menssageObject);
+                res.send("EVENT_RECEIVED");
+            }
+            catch (e) {
+                myConsole.log(e);
+                res.send("EVENT_RECEIVED");
+            }
         });
     }
 }
