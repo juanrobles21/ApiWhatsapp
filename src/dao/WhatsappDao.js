@@ -37,8 +37,8 @@ class WhatsappDao {
                 var changes = (entry["changes"])[0];
                 var value = changes["value"];
                 var menssageObject = value["messages"];
-                myConsole.log(menssageObject);
                 console.log(menssageObject);
+                myConsole.log(menssageObject);
                 res.send("EVENT_RECEIVED");
             }
             catch (e) {
