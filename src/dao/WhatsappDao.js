@@ -15,7 +15,7 @@ class WhatsappDao {
             try {
                 const accessToken = "R3849322SJFDK3953DJDJNFW53259283";
                 const token = req.query["hub.verify_token"];
-                const challenge = req.body["hub.challenge"];
+                const challenge = req.query["hub.challenge"];
                 if (challenge != null && token != null && token == accessToken) {
                     res.send(challenge);
                 }
