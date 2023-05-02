@@ -12,25 +12,26 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const fs = require("fs");
 const myConsole = new console.Console(fs.createWriteStream("./log.txt"));
 function GetTextUser(messages) {
-    var _a, _b, _c;
     var text = "";
-    var typeMessge = messages.type;
+    var typeMessge = messages["type"];
     if (typeMessge == "text") {
-        text = ((_a = messages.text) === null || _a === void 0 ? void 0 : _a.body) || "";
+        text = (messages["text"])["body"];
     }
     else if (typeMessge == "interactive") {
-        var interactiveObject = messages.interactive;
-        var typeInteractive = interactiveObject === null || interactiveObject === void 0 ? void 0 : interactiveObject.type;
-        console.log(typeInteractive);
-        if (typeInteractive == "button_reply") {
-            text = ((_b = interactiveObject === null || interactiveObject === void 0 ? void 0 : interactiveObject.button_reply) === null || _b === void 0 ? void 0 : _b.title) || "";
+        var interactiveObject = messages["interactive"];
+        var typeIneractive = interactiveObject["type"];
+        myConsole.log(interactiveObject);
+        if (typeIneractive == "button_reply") {
+            text = interactiveObject["button_reply"]["title"];
         }
-        else if (typeInteractive == "list_reply") {
-            text = ((_c = interactiveObject === null || interactiveObject === void 0 ? void 0 : interactiveObject.button_reply) === null || _c === void 0 ? void 0 : _c.title) || "";
+        else if (typeIneractive == "list_reply") {
+            text = interactiveObject["list_reply"]["title"];
+        }
+        else {
+            myConsole.log("sin mensaje");
         }
     }
     else {
-        console.log("sin mesanje");
         myConsole.log("sin mensaje");
     }
     return text;
@@ -65,6 +66,7 @@ class WhatsappDao {
                     var messages = messageObject[0];
                     var text = GetTextUser(messages);
                     myConsole.log(text);
+                    console.log(text);
                 }
                 myConsole.log(messageObject);
                 res.send("EVENT_RECEIVED");
