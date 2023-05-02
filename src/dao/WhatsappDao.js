@@ -11,6 +11,30 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const fs = require("fs");
 const myConsole = new console.Console(fs.createWriteStream("./log.txt"));
+function GetTextUser(messages) {
+    var _a, _b, _c;
+    var text = "";
+    var typeMessge = messages.type;
+    if (typeMessge == "text") {
+        text = ((_a = messages.text) === null || _a === void 0 ? void 0 : _a.body) || "";
+    }
+    else if (typeMessge == "interactive") {
+        var interactiveObject = messages.interactive;
+        var typeInteractive = interactiveObject === null || interactiveObject === void 0 ? void 0 : interactiveObject.type;
+        console.log(typeInteractive);
+        if (typeInteractive == "button_reply") {
+            text = ((_b = interactiveObject === null || interactiveObject === void 0 ? void 0 : interactiveObject.button_reply) === null || _b === void 0 ? void 0 : _b.title) || "";
+        }
+        else if (typeInteractive == "list_reply") {
+            text = ((_c = interactiveObject === null || interactiveObject === void 0 ? void 0 : interactiveObject.button_reply) === null || _c === void 0 ? void 0 : _c.title) || "";
+        }
+    }
+    else {
+        console.log("sin mesanje");
+        myConsole.log("sin mensaje");
+    }
+    return text;
+}
 class WhatsappDao {
     static VerifyToken(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -36,9 +60,13 @@ class WhatsappDao {
                 var entry = (req.body["entry"])[0];
                 var changes = (entry["changes"])[0];
                 var value = changes["value"];
-                var menssageObject = value["messages"];
-                console.log(menssageObject);
-                myConsole.log(menssageObject);
+                var messageObject = value["messages"];
+                if (typeof messageObject !== "undefined") {
+                    var messages = messageObject[0];
+                    var text = GetTextUser(messages);
+                    myConsole.log(text);
+                }
+                myConsole.log(messageObject);
                 res.send("EVENT_RECEIVED");
             }
             catch (e) {
