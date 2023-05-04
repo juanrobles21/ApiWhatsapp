@@ -8,7 +8,11 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
+const WhatsappService_1 = __importDefault(require("../configuration/services/WhatsappService"));
 const fs = require("fs");
 const myConsole = new console.Console(fs.createWriteStream("./log.txt"));
 const GetTextUser = (messages) => {
@@ -65,8 +69,10 @@ class WhatsappDao {
                 if (typeof messageObject !== "undefined") {
                     var messages = messageObject[0];
                     var text = GetTextUser(messages);
+                    var number = messages["from"];
                     myConsole.log(text);
                     console.log(text);
+                    WhatsappService_1.default.SendMessageWhatsApp(text, number);
                 }
                 myConsole.log(messageObject);
                 res.send("EVENT_RECEIVED");
