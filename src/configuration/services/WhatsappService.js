@@ -1,13 +1,16 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-const https = require("https");
+const https_1 = __importDefault(require("https"));
 class WhatsappService {
     SendMessageWhatsApp(textResponse, number) {
         const data = JSON.stringify({
             "messaging_product": "whatsapp",
-            "to": `whatsapp:${number}`,
+            "to": number,
             "text": {
-                "body": "El usuario dijo: ", textResponse
+                "body": textResponse
             },
             "type": "text"
         });
@@ -18,11 +21,11 @@ class WhatsappService {
             body: data,
             headers: {
                 "Content-Type": "application/json",
-                Authorization: "Bearer EAAB29YL8bSkBANdyiyUY1n6UlfZBd0hekzDOTCRZBoyK2DZBlOzYisO7APyJA6I7qg0f5E9qyuKvZAgWLrLxh2gK7IxHIvRdMqZBD0m7j2eK3nZBZCmdHsIUxW2HAexVgM6MsD1k7WVjKejTrSeABUsd4c4xXrNZAZAvySvkWHxS69MY2gdVwl2SZCioQrXWHn46dGj2ugTLbv3wZDZD"
+                Authorization: "Bearer EAAB29YL8bSkBAKEanQ2PHjh9ZCbets5j9BHP7QaLASv27G42v5AcyZCDgO1xAlk6a3PsLcQVsz4Gx8wFT1uUQguVwOy34UaeQg2D4ONkAXjC2n0LMJlJZASZCVshCabhi4ZAZCCdIDRkZAZBbL6L3iznMCNSPLgLeB4BPEAXBu9W9IcVEdbJsn47earPb6Lciagr1725uuhrRyOMYTxDCZAbn731yZBYhpuEAZD"
             }
         };
-        const req = https.request(options, (res) => {
-            res.on("data", d => {
+        const req = https_1.default.request(options, (res) => {
+            res.on("data", (d) => {
                 process.stdout.write(d);
             });
         });
