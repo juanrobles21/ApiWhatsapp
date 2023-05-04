@@ -21,7 +21,7 @@ class WhatsappService {
             body: data,
             headers: {
                 "Content-Type": "application/json",
-                Authorization: "Bearer EAAB29YL8bSkBAKEanQ2PHjh9ZCbets5j9BHP7QaLASv27G42v5AcyZCDgO1xAlk6a3PsLcQVsz4Gx8wFT1uUQguVwOy34UaeQg2D4ONkAXjC2n0LMJlJZASZCVshCabhi4ZAZCCdIDRkZAZBbL6L3iznMCNSPLgLeB4BPEAXBu9W9IcVEdbJsn47earPb6Lciagr1725uuhrRyOMYTxDCZAbn731yZBYhpuEAZD"
+                Authorization: "Bearer EAAB29YL8bSkBADQV4DUu1lpjFIQ3r3J5MRknPBEjZA0THmUuZA4ZAjNpW7rZBTgQxr7q7amZCjECmNaNSAQFcIrTyVnGL8jFxY3BQnkjmCd5r7arZBtaGMHUFhftmsTtLFr50r0OS0PyB1ztg9qCSDymhnG2pix0rkrubHPZATpZAQ25RGlwIlkJY65q1QSKb5lol66dieKtHAZDZD"
             }
         };
         const req = https_1.default.request(options, (res) => {
@@ -33,6 +33,7 @@ class WhatsappService {
             console.error(error);
         });
         req.write(data);
+        console.log(data, "Si llega");
         req.end();
     }
 }
