@@ -18,7 +18,7 @@ class WhatsappService {
             body: data,
             headers: {
                 "Content-Type": "application/json",
-                Authorization: "Bearer EAAB29YL8bSkBACNbPEJT05VPK0gxr8fcnYZA1qCPrlMlfKQzQ8jzCjHjrhyRImShTvYmECWXvxfFqjKAADKWQoN6H94ZBsEeuzbFmHIPIZCnzbj9ivFr8ZCJ5ZCahQGb7IZAtIZCwf4GiECequYlNbsK9GeLOOv5gP5wm4WUbPxghyHOz6HJCQM"
+                Authorization: "Bearer EAAB29YL8bSkBANdyiyUY1n6UlfZBd0hekzDOTCRZBoyK2DZBlOzYisO7APyJA6I7qg0f5E9qyuKvZAgWLrLxh2gK7IxHIvRdMqZBD0m7j2eK3nZBZCmdHsIUxW2HAexVgM6MsD1k7WVjKejTrSeABUsd4c4xXrNZAZAvySvkWHxS69MY2gdVwl2SZCioQrXWHn46dGj2ugTLbv3wZDZD"
             }
         };
         const req = https.request(options, (res) => {
