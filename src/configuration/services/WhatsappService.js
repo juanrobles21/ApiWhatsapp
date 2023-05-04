@@ -4,8 +4,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const https_1 = __importDefault(require("https"));
-const dotenv_1 = __importDefault(require("dotenv"));
-dotenv_1.default.config({ path: "variables.env" });
 class WhatsappService {
     SendMessageWhatsApp(textResponse, number) {
         const data = JSON.stringify({
@@ -23,7 +21,7 @@ class WhatsappService {
             body: data,
             headers: {
                 "Content-Type": "application/json",
-                Authorization: "Bearer " + process.env.TOKEN
+                Authorization: "Bearer " + String(process.env.TOKEN)
             }
         };
         const req = https_1.default.request(options, (res) => {
