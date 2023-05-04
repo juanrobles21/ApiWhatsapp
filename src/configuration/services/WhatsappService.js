@@ -23,7 +23,7 @@ class WhatsappService {
             body: data,
             headers: {
                 "Content-Type": "application/json",
-                Authorization: process.env.TOKEN
+                Authorization: "Bearer " + process.env.TOKEN
             }
         };
         const req = https_1.default.request(options, (res) => {
