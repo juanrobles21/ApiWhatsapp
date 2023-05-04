@@ -12,8 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const WhatsappService_1 = __importDefault(require("../configuration/services/WhatsappService"));
-const FormartMessage_1 = __importDefault(require("../configuration/shared/FormartMessage"));
+const ProcessMessage_1 = __importDefault(require("../configuration/shared/ProcessMessage"));
 const fs = require("fs");
 const myConsole = new console.Console(fs.createWriteStream("./log.txt"));
 const GetTextUser = (messages) => {
@@ -74,42 +73,39 @@ class WhatsappDao {
                     myConsole.log(text);
                     console.log(text);
                     console.log("El numero de telefono es:", number);
-                    if (text == "texto") {
-                        var data = FormartMessage_1.default.Text("El usuario dijo:", number);
-                        WhatsappService_1.default.SendMessageWhatsApp(data);
+                    if (text != "") {
+                        ProcessMessage_1.default.Process(text, number);
                     }
-                    else if (text == "imagen") {
-                        var data = FormartMessage_1.default.Image(number);
-                        WhatsappService_1.default.SendMessageWhatsApp(data);
-                    }
-                    else if (text == "audio") {
-                        var data = FormartMessage_1.default.Audio(number);
-                        WhatsappService_1.default.SendMessageWhatsApp(data);
-                    }
-                    else if (text == "video") {
-                        var data = FormartMessage_1.default.Video(number);
-                        WhatsappService_1.default.SendMessageWhatsApp(data);
-                    }
-                    else if (text == "documento") {
-                        var data = FormartMessage_1.default.Document(number);
-                        WhatsappService_1.default.SendMessageWhatsApp(data);
-                    }
-                    else if (text == "boton") {
-                        var data = FormartMessage_1.default.Button(number);
-                        WhatsappService_1.default.SendMessageWhatsApp(data);
-                    }
-                    else if (text == "lista") {
-                        var data = FormartMessage_1.default.List(number);
-                        WhatsappService_1.default.SendMessageWhatsApp(data);
-                    }
-                    else if (text == "ubicacion") {
-                        var data = FormartMessage_1.default.Ubication(number);
-                        WhatsappService_1.default.SendMessageWhatsApp(data);
-                    }
-                    else {
-                        var data = FormartMessage_1.default.Text("No te entiendo, se más especifico", number);
-                        WhatsappService_1.default.SendMessageWhatsApp(data);
-                    }
+                    // }else if(text=="imagen"){
+                    //   var data=formartMessage.Image(number);
+                    //   whatsappService.SendMessageWhatsApp(data);
+                    // }else if(text=="audio"){
+                    //   var data=formartMessage.Audio(number);
+                    //   whatsappService.SendMessageWhatsApp(data);
+                    // }
+                    // else if(text=="video"){
+                    //   var data=formartMessage.Video(number);
+                    //   whatsappService.SendMessageWhatsApp(data);
+                    // }
+                    // else if(text=="documento"){
+                    //   var data=formartMessage.Document(number);
+                    //   whatsappService.SendMessageWhatsApp(data);
+                    // }
+                    // else if(text=="boton"){
+                    //   var data=formartMessage.Button(number);
+                    //   whatsappService.SendMessageWhatsApp(data);
+                    // }
+                    // else if(text=="lista"){
+                    //   var data=formartMessage.List(number);
+                    //   whatsappService.SendMessageWhatsApp(data);
+                    // }
+                    // else if(text=="ubicacion"){
+                    //   var data=formartMessage.Ubication(number);
+                    //   whatsappService.SendMessageWhatsApp(data);
+                    // }else{
+                    //   var data=formartMessage.Text("No te entiendo, se más especifico",number);
+                    //   whatsappService.SendMessageWhatsApp(data);
+                    // }
                 }
                 myConsole.log(messageObject);
                 res.send("EVENT_RECEIVED");
