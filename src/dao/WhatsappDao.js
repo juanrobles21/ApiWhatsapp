@@ -72,6 +72,7 @@ class WhatsappDao {
                     var number = messages["from"];
                     myConsole.log(text);
                     console.log(text);
+                    console.log("El numero de telefono es:", number);
                     WhatsappService_1.default.SendMessageWhatsApp(text, number);
                 }
                 myConsole.log(messageObject);
