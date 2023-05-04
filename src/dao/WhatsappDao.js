@@ -11,7 +11,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const fs = require("fs");
 const myConsole = new console.Console(fs.createWriteStream("./log.txt"));
-function GetTextUser(messages) {
+const GetTextUser = (messages) => {
     var text = "";
     var typeMessge = messages["type"];
     if (typeMessge == "text") {
@@ -35,7 +35,7 @@ function GetTextUser(messages) {
         myConsole.log("sin mensaje");
     }
     return text;
-}
+};
 class WhatsappDao {
     static VerifyToken(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
