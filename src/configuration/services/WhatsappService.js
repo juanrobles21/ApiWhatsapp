@@ -5,15 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const https_1 = __importDefault(require("https"));
 class WhatsappService {
-    SendMessageWhatsApp(textResponse, number) {
-        const data = JSON.stringify({
-            "messaging_product": "whatsapp",
-            "to": number,
-            "text": {
-                "body": textResponse
-            },
-            "type": "text"
-        });
+    SendMessageWhatsApp(data) {
         const options = {
             host: "graph.facebook.com",
             path: "/v16.0/108938368857495/messages",
