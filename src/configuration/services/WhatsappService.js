@@ -5,7 +5,7 @@ class WhatsappService {
     SendMessageWhatsApp(textResponse, number) {
         const data = JSON.stringify({
             "messaging_product": "whatsapp",
-            "to": number,
+            "to": `whatsapp:${number}`,
             "text": {
                 "body": "El usuario dijo: ", textResponse
             },
@@ -18,7 +18,7 @@ class WhatsappService {
             body: data,
             headers: {
                 "Content-Type": "application/json",
-                Authorization: "Bearer EAAB29YL8bSkBAOxVISziyt7WWskA1ZB3rhL0NdFFfZApJOnuryPVGqu7yABPoSZAJiXVYmIb3lFKUNqfbvqCuBoY6KrN5JJALuZCx3kyEs3dhZBYhB76uPR7sUklKsUApEokjZBxxsDyEfg877s8ytZBykHi2weCoozuewtAU1BZA36ORgkdIsVqdiNBrNv5QneODHMA8hzOzwEexkSqhdHXhZBBnOpYoTZB0ZD"
+                Authorization: "Bearer EAAB29YL8bSkBACNbPEJT05VPK0gxr8fcnYZA1qCPrlMlfKQzQ8jzCjHjrhyRImShTvYmECWXvxfFqjKAADKWQoN6H94ZBsEeuzbFmHIPIZCnzbj9ivFr8ZCJ5ZCahQGb7IZAtIZCwf4GiECequYlNbsK9GeLOOv5gP5wm4WUbPxghyHOz6HJCQM"
             }
         };
         const req = https.request(options, (res) => {
