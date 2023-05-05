@@ -6,13 +6,14 @@ class ModelsWhatsapp {
             messaging_product: "whatsapp",
             to: number,
             text: {
+                preview_url: true,
                 body: textResponse,
             },
             type: "text",
         });
         return data;
     }
-    MessageList(textResponse, number) {
+    MessageList(number) {
         const data = JSON.stringify({
             messaging_product: "whatsapp",
             to: number,
@@ -52,8 +53,8 @@ class ModelsWhatsapp {
                             rows: [
                                 {
                                     id: "main-agencia",
-                                    title: "Agencia",
-                                    description: "Puedes visitar nuestra agencia.",
+                                    title: "Agendar",
+                                    description: "Cada viernes a las 8pm.",
                                 },
                                 {
                                     id: "main-contacto",
@@ -64,6 +65,52 @@ class ModelsWhatsapp {
                         },
                     ],
                 },
+            },
+        });
+        return data;
+    }
+    MessageButton(number) {
+        const data = JSON.stringify({
+            messaging_product: "whatsapp",
+            to: number,
+            type: "interactive",
+            interactive: {
+                type: "button",
+                body: {
+                    text: "Selecciona uno los productos",
+                },
+                action: {
+                    buttons: [
+                        {
+                            type: "reply",
+                            reply: {
+                                id: "option-laptop",
+                                title: "Laptop",
+                            },
+                        },
+                        {
+                            type: "reply",
+                            reply: {
+                                id: "option-pc",
+                                title: "pc",
+                            },
+                        },
+                    ],
+                },
+            },
+        });
+        return data;
+    }
+    MessageUbication(number) {
+        const data = JSON.stringify({
+            messaging_product: "whatsapp",
+            to: number,
+            type: "location",
+            location: {
+                latitude: "5.544349450913517",
+                longitude: "-73.3512510799502",
+                name: "Hit Data",
+                address: "Centro Comercial Boulevard, Cl. 32 # 3-76, Tunja, Boyacá",
             },
         });
         return data;

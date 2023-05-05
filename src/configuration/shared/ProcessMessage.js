@@ -10,19 +10,46 @@ class ProcessMessage {
         textUser = textUser.toLowerCase();
         var models = [];
         //hola que tal
-        if (textUser.includes("hola")) {
+        if (textUser.includes("hola") ||
+            textUser.includes("buenos") ||
+            textUser.includes("buenas")) {
             //SALUDAR
             var model = ModelsWhatsapp_1.default.MessageText("Hola, un gusto saludarte", number);
             models.push(model);
+            var modelList = ModelsWhatsapp_1.default.MessageList(number);
+            models.push(modelList);
         }
         else if (textUser.includes("gracias")) {
             //AGRADECIMIENTO
             var model = ModelsWhatsapp_1.default.MessageText("Con gusto, gracias por comunicarte con nosotros", number);
             models.push(model);
         }
-        else if (textUser.includes("adios") || textUser.includes("adiós") || textUser.includes("bye") || textUser.includes("chao")) {
+        else if (textUser.includes("adios") ||
+            textUser.includes("adiós") ||
+            textUser.includes("bye") ||
+            textUser.includes("chao")) {
             //DESPEDIDA
             var model = ModelsWhatsapp_1.default.MessageText("Ve con DIOS", number);
+            models.push(model);
+        }
+        else if (textUser.includes("comprar")) {
+            //COMPRAR
+            var modelButton = ModelsWhatsapp_1.default.MessageButton(number);
+            models.push(modelButton);
+        }
+        else if (textUser.includes("vender")) {
+            //VENDER
+            var model = ModelsWhatsapp_1.default.MessageText("Segir la siguiente cuenta: https://docs.google.com/forms/d/e/1FAIpQLSeV2-BAld86gZy0aq_ZMRXU9FJnZBBw5yyWxVB4KlfXJmXadA/viewform", number);
+            models.push(model);
+        }
+        else if (textUser.includes("agendar")) {
+            //AGENCIA
+            var model = ModelsWhatsapp_1.default.MessageText("Registatre en el siguiente formulario para poder agendarte 💪: https://docs.google.com/forms/d/e/1FAIpQLSeV2-BAld86gZy0aq_ZMRXU9FJnZBBw5yyWxVB4KlfXJmXadA/viewform", number);
+            models.push(model);
+        }
+        else if (textUser.includes("centro de contacto")) {
+            //CENTRO DE CONTACTO
+            var model = ModelsWhatsapp_1.default.MessageUbication(number);
             models.push(model);
         }
         else {
@@ -30,7 +57,7 @@ class ProcessMessage {
             var model = ModelsWhatsapp_1.default.MessageText("No entiendo lo que dices...", number);
             models.push(model);
         }
-        models.forEach(data => {
+        models.forEach((data) => {
             WhatsappService_1.default.SendMessageWhatsApp(data);
         });
     }
