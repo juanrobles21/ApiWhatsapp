@@ -13,7 +13,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const ProcessMessage_1 = __importDefault(require("../configuration/shared/ProcessMessage"));
-const ProcessMessagesChatGPT_1 = __importDefault(require("../configuration/shared/ProcessMessagesChatGPT"));
 const fs = require("fs");
 const myConsole = new console.Console(fs.createWriteStream("./log.txt"));
 const GetTextUser = (messages) => {
@@ -77,7 +76,7 @@ class WhatsappDao {
                         myConsole.log(text);
                         myConsole.log(number);
                         ProcessMessage_1.default.Process(text, number);
-                        yield ProcessMessagesChatGPT_1.default.Process(text, number);
+                        //await processMessageChatGPT.Process(text, number);
                     }
                 }
                 res.send("EVENT_RECEIVED");
