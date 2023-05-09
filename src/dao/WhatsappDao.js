@@ -13,6 +13,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const ProcessMessage_1 = __importDefault(require("../configuration/shared/ProcessMessage"));
+const ProcessMessagesChatGPT_1 = __importDefault(require("../configuration/shared/ProcessMessagesChatGPT"));
 const fs = require("fs");
 const myConsole = new console.Console(fs.createWriteStream("./log.txt"));
 const GetTextUser = (messages) => {
@@ -62,52 +63,23 @@ class WhatsappDao {
     static ReceivedMenssage(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                var entry = (req.body["entry"])[0];
-                var changes = (entry["changes"])[0];
+                var entry = req.body["entry"][0];
+                var changes = entry["changes"][0];
                 var value = changes["value"];
                 var messageObject = value["messages"];
-                if (typeof messageObject !== "undefined") {
+                if (typeof messageObject != "undefined") {
                     var messages = messageObject[0];
-                    var text = GetTextUser(messages);
                     var number = messages["from"];
-                    myConsole.log(text);
+                    var text = GetTextUser(messages);
                     console.log(text);
-                    console.log("El numero de telefono es:", number);
+                    console.log(number);
                     if (text != "") {
+                        myConsole.log(text);
+                        myConsole.log(number);
                         ProcessMessage_1.default.Process(text, number);
+                        yield ProcessMessagesChatGPT_1.default.Process(text, number);
                     }
-                    // }else if(text=="imagen"){
-                    //   var data=formartMessage.Image(number);
-                    //   whatsappService.SendMessageWhatsApp(data);
-                    // }else if(text=="audio"){
-                    //   var data=formartMessage.Audio(number);
-                    //   whatsappService.SendMessageWhatsApp(data);
-                    // }
-                    // else if(text=="video"){
-                    //   var data=formartMessage.Video(number);
-                    //   whatsappService.SendMessageWhatsApp(data);
-                    // }
-                    // else if(text=="documento"){
-                    //   var data=formartMessage.Document(number);
-                    //   whatsappService.SendMessageWhatsApp(data);
-                    // }
-                    // else if(text=="boton"){
-                    //   var data=formartMessage.Button(number);
-                    //   whatsappService.SendMessageWhatsApp(data);
-                    // }
-                    // else if(text=="lista"){
-                    //   var data=formartMessage.List(number);
-                    //   whatsappService.SendMessageWhatsApp(data);
-                    // }
-                    // else if(text=="ubicacion"){
-                    //   var data=formartMessage.Ubication(number);
-                    //   whatsappService.SendMessageWhatsApp(data);
-                    // }else{
-                    //   var data=formartMessage.Text("No te entiendo, se más especifico",number);
-                    //   whatsappService.SendMessageWhatsApp(data);
-                    // }
                 }
-                myConsole.log(messageObject);
                 res.send("EVENT_RECEIVED");
             }
             catch (e) {
@@ -116,5 +88,6 @@ class WhatsappDao {
             }
         });
     }
+    ;
 }
 exports.default = WhatsappDao;

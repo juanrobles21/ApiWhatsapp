@@ -39,7 +39,7 @@ class ProcessMessage {
         }
         else if (textUser.includes("vender")) {
             //VENDER
-            var model = ModelsWhatsapp_1.default.MessageText("Segir la siguiente cuenta: https://docs.google.com/forms/d/e/1FAIpQLSeV2-BAld86gZy0aq_ZMRXU9FJnZBBw5yyWxVB4KlfXJmXadA/viewform", number);
+            var model = ModelsWhatsapp_1.default.MessageText("Segir la siguiente cuenta: linkedin.com/in/juan-pablo-robles-arias-00316626b", number);
             models.push(model);
         }
         else if (textUser.includes("agendar")) {
