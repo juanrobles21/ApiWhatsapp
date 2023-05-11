@@ -63,6 +63,16 @@ class ModelsWhatsapp {
                                 },
                             ],
                         },
+                        {
+                            title: "Inteligencia Artificial",
+                            rows: [
+                                {
+                                    id: "main-gpt",
+                                    title: "Chat GPT",
+                                    description: "Habla con ChatGPT en tiempo real",
+                                },
+                            ],
+                        },
                     ],
                 },
             },
@@ -111,6 +121,37 @@ class ModelsWhatsapp {
                 longitude: "-73.3512510799502",
                 name: "Hit Data",
                 address: "Centro Comercial Boulevard, Cl. 32 # 3-76, Tunja, Boyacá",
+            },
+        });
+        return data;
+    }
+    MessageContacto(number) {
+        const data = JSON.stringify({
+            messaging_product: "whatsapp",
+            to: number,
+            type: "interactive",
+            interactive: {
+                type: "button",
+                header: {
+                    type: "image",
+                    image: {
+                        link: "https://images.pexels.com/photos/15863044/pexels-photo-15863044.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+                    },
+                },
+                body: {
+                    text: "Escribir al siguiente numero...",
+                },
+                action: {
+                    buttons: [
+                        {
+                            type: "reply",
+                            reply: {
+                                id: "001",
+                                title: "Contact US",
+                            },
+                        },
+                    ],
+                },
             },
         });
         return data;

@@ -25,7 +25,6 @@ class WhatsappService {
             console.error(error);
         });
         req.write(data);
-        console.log(data, "Si llega");
         req.end();
     }
 }

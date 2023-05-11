@@ -52,6 +52,16 @@ class ProcessMessage {
             var model = ModelsWhatsapp_1.default.MessageUbication(number);
             models.push(model);
         }
+        else if (textUser.includes("chat")) {
+            //CHAT GPT
+            var model = ModelsWhatsapp_1.default.MessageContacto(number);
+            models.push(model);
+        }
+        else if (textUser.includes("contact")) {
+            //CHAT GPT
+            var model = ModelsWhatsapp_1.default.MessageText("Mandanos un mensaje al siguiente chat: 📲+1 (555) 093-8082", number);
+            models.push(model);
+        }
         else {
             //NO TE ENTIENDO
             var model = ModelsWhatsapp_1.default.MessageText("No entiendo lo que dices...", number);
