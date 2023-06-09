@@ -156,6 +156,39 @@ class ModelsWhatsapp {
         });
         return data;
     }
+    MessageContact(number) {
+        const data = JSON.stringify({
+            messaging_product: "whatsapp",
+            to: number,
+            type: "contacts",
+            contacts: [
+                {
+                    name: {
+                        formatted_name: "CHAT GPT",
+                        first_name: "CHAT GPT",
+                    },
+                    org: {
+                        company: "5550938082",
+                        title: "CHAT GPT",
+                    },
+                    phones: [
+                        {
+                            phone: "5550938082",
+                            wa_id: "15550938082",
+                            type: "WORK",
+                        },
+                    ],
+                    urls: [
+                        {
+                            url: "https://openai.com/blog/openai-api",
+                            type: "Nuestro Web Site",
+                        },
+                    ],
+                },
+            ],
+        });
+        return data;
+    }
 }
 const modelsWhatsapp = new ModelsWhatsapp();
 exports.default = modelsWhatsapp;

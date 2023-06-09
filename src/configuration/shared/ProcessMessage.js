@@ -59,7 +59,7 @@ class ProcessMessage {
         }
         else if (textUser.includes("contact")) {
             //CHAT GPT
-            var model = ModelsWhatsapp_1.default.MessageText("Mandanos un mensaje al siguiente chat: 📲+1 (555) 093-8082", number);
+            var model = ModelsWhatsapp_1.default.MessageContact(number);
             models.push(model);
         }
         else {
